@@ -8,7 +8,7 @@ class GoogleHomePageLocator(object):
     HTML = (By.TAG_NAME, 'html')
 
 class GoogleSearchResultPageLocator(object):
-    LOGO = (By.XPATH, '//div[@class="logo doodle"]')
+    # LOGO = (By.XPATH, '//div[@class="logo doodle"]')
     SEARCH_BOX = (By.XPATH, '//input[@class="gLFyf gsfi"]')
     SEARCH_RESULTS = (By.XPATH, '//div[@class="hlcw0c"]/div')
     SEARCH_RESULTS_LINKS = (By.XPATH, '//div[@class="hlcw0c"]/div/*//div[@class="yuRUbf"]/a')

@@ -1,16 +1,14 @@
-import time
 import unittest
 
 import HtmlTestRunner
 from selenium import webdriver
-from ..pages.bikroy_product_view_page import BikroyProductViewPage
-from .base_test import BaseTest
+from QUP01.src.pages.bikroy_product_view_page import BikroyProductViewPage
 
 
 class BikroyProductViewepage(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome('/home/hasib/PycharmProjects/SeleniumQA/drivers/chromedriver')
+        self.driver = webdriver.Chrome('chromedriver')
         self.driver.get("http://bikroy.com/en/ad/xiaomi-redmi-8-4-64-used-for-sale-dhaka-673")
         self.driver.implicitly_wait(10)
 

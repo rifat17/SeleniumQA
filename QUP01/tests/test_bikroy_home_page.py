@@ -3,14 +3,13 @@ import unittest
 
 import HtmlTestRunner
 from selenium import webdriver
-from ..pages.bikroy_home_page import BikroyHomePage
-from .base_test import BaseTest
+from QUP01.src.pages.bikroy_home_page import BikroyHomePage
 
 
 class BikroyHomepage(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome('/home/hasib/PycharmProjects/SeleniumQA/drivers/chromedriver')
+        self.driver = webdriver.Chrome('chromedriver')
         self.driver.get("http://bikroy.com/en/ads/dhaka/mobiles")
         self.driver.implicitly_wait(10)
 

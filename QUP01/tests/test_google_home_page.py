@@ -3,14 +3,14 @@ import unittest
 
 import HtmlTestRunner
 from selenium import webdriver
-from ..pages.google_home_page import GoogleHomePage
+from QUP01.src.pages.google_home_page import GoogleHomePage
 from .base_test import BaseTest
 
 
 class GoogleHomepage(BaseTest):
 
     def setUp(self) -> None:
-        self.driver = webdriver.Chrome('/home/hasib/PycharmProjects/SeleniumQA/drivers/chromedriver')
+        self.driver = webdriver.Chrome('chromedriver')
         self.driver.get("http://google.com")
         self.driver.implicitly_wait(10)
 
