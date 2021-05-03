@@ -1,39 +1,42 @@
 import time
 
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from QUPS_ASSIGNMENT_01_PY.src.locators.bikroy_city import BikroyCityPageLocator
+from QUPS_ASSIGNMENT_01_PY.src.locators.bikroy_product import BikroyProductPageLocator
 
 
-class BikroyCityPage(object):
+class BikroyProductPage(object):
 
     def __init__(self, driver) -> None:
         self.driver = driver
-        self.locators = BikroyCityPageLocator
+        self.locators = BikroyProductPageLocator
 
-    def get_cheapest_product(self):
-        products = self.driver.find_elements(*self.locators.PRODUCTS_TAG_LI)
-        print(len(products))
+    def get_posted_on(self):
+        try:
+            posted_on = self.driver.find_element(*self.locators.POSTED_ON)
+            return posted_on.text
+        except:
+            return None
 
-        min_price = float('inf')
-        min_price_product = None
-        for product in products:
-            text = product.find_element(*self.locators.PRODUCT_PRICE_REL_PEODUCT).text
-            # print(product.find_element_by_xpath('//a[@class="card-link--3ssYv gtm-ad-item"]/@href'))
-            # print(text.split(' '))
-            try:
-                raw_amount = text.split(' ')[1]
-                amount = float(''.join(raw_amount.split(',')))
-                if amount < min_price:
-                    min_price = amount
-                    min_price_product = product
-            except:
-                print('EXCETION')
-                product.screenshot('/Screenshot/{}.png'.format(product.id))
-                pass
+    def get_description(self):
+        description = self.driver.find_element(*self.locators.DESCRIPTION)
+        return description.text
 
-        print(min_price)
-        return min_price_product
+    def get_seller_mobile_button(self):
+        try:
+            button = self.driver.find_element(*self.locators.SELLER_MOBILE_BUTTON)
+            return button
+        except NoSuchElementException:
+            return None
+            # raise NoSuchElementException('No Mobile Number Provided.')
 
+    def get_seller_mobile_number(self):
+        try:
+            mobile_number = self.driver.find_element(*self.locators.SELLER_MOBILE_NUMBER)
+            return mobile_number.text
+        except NoSuchElementException:
+            return None
+            # raise NoSuchElementException('No Mobile Number Provided.')

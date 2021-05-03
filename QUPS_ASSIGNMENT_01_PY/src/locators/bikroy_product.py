@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 
 
-class BikroyHomePageLocator(object):
+class BikroyProductPageLocator(object):
     HTML = (By.TAG_NAME, 'html')
-    COPYRIGHT = (By.XPATH, '//div[@class="col-8 copyright"]') # Copyright © Saltside Technologies
-    POST_YOUR_AD_SPAN = (By.XPATH, '//span[@class="h4 t-bold btn-post"]')
-    POST_YOUR_AD_A = (By.CSS_SELECTOR, 'a.ui-btn.is-important.btn-post')
-    CITIES = (By.CSS_SELECTOR, 'div.home-group.is-city p ~ ul li a')
+    POSTED_ON = (By.XPATH, '//span[@class="sub-title--37mkY"]')
+    DESCRIPTION = (By.XPATH, '//div[@class="description--1nRbz"]/p')
+    # SELLER_MOBILE_BUTTON = (By.XPATH, '//div[@class="display--s3dc8 card--_2NNk"][1]')
+    SELLER_MOBILE_BUTTON = (By.XPATH, '//button[@class="contact-section--1qlvP gtm-show-number"]')
+    SELLER_MOBILE_NUMBER = (By.XPATH, '//div[@class="phone-numbers--2COKR"]')
 

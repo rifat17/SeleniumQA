@@ -4,39 +4,37 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from QUPS_ASSIGNMENT_01_PY.src.locators.bikroy_home import BikroyHomePageLocator
+from QUPS_ASSIGNMENT_01_PY.src.locators.bikroy_city import BikroyCityPageLocator
 
 
-class BikroyHomePage(object):
+class BikroyCityPage(object):
 
     def __init__(self, driver) -> None:
         self.driver = driver
-        self.locators = BikroyHomePageLocator
-        self.cities = {}
+        self.locators = BikroyCityPageLocator
 
-    def _scroll(self, position_key):
-        self.driver.find_element(*self.locators.HTML).send_keys(position_key)
-        # element = self.driver.find_element(*self.locators.HTML)
-        # element.send_keys(position_key)
+    def get_cheapest_product(self):
+        products = self.driver.find_elements(*self.locators.PRODUCTS_TAG_LI)
+        # print(len(products))
 
-    def scroll_up(self):
-        self._scroll(Keys.HOME)
+        min_price = float('inf')
+        min_price_product = None
+        for product in products:
+            text = product.find_element(*self.locators.PRODUCT_PRICE_REL_PEODUCT).text
+            # print(product.find_element_by_xpath('//a[@class="card-link--3ssYv gtm-ad-item"]/@href'))
+            # print(text.split(' '))
+            try:
+                raw_amount = text.split(' ')[1]
+                amount = float(''.join(raw_amount.split(',')))
+                if amount < min_price:
+                    min_price = amount
+                    min_price_product = product
+            except:
+                title = product.find_element(*self.locators.PRODUCT_TITLE).text
+                print('price not added', title)
+                product.screenshot('errors/{}.png'.format(title))
+                pass
 
-    def scroll_down(self):
-        self._scroll(Keys.END)
-        time.sleep(2)
+        print(min_price)
+        return min_price_product
 
-    def find_copyright(self):
-        return self.driver.find_element(*self.locators.COPYRIGHT)
-
-    def find_POST_YOUR_AD(self):
-        return self.driver.find_element(*self.locators.POST_YOUR_AD_A)
-        # return self.driver.find_element(*self.locators.POST_YOUR_AD_SPAN).parent
-
-    def get_cities(self):
-        cities = self.driver.find_elements(*self.locators.CITIES)
-        for city in cities:
-            name = city.text
-            link = city.get_attribute('href')
-            self.cities[name] = link
-        return self.cities
