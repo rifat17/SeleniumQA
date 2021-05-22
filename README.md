@@ -20,21 +20,35 @@ source ./venv/bin/activate
 pip install -r requirments.txt
 ```
 
+#### go to project folder
+```sh
+cd BikroyDotComE2EWebTEST
+
+```
 
 #### If you want to run all tests, you should type: 
+
+```sh
+pytest 
+```
+
+#### If you want to run all tests from assignment, you should type: 
 ```sh
 pytest 
 or
-python -m unittest QUP01.tests.all_tests 
+python -m unittest BikroyDotCom/tests/tests_from_assignment.py
 ```
 
 
 #### If you want to run just a class, you should type: 
 ```sh
-python -m unittest QUP01.tests.test_google_home_page
+
+
+python -m unittest BikroyDotCom/tests/test_homePO.py
 ```
 
 #### If you want to run just a test method, you should type: 
 ```sh
-python -m unittest QUP01.tests.test_google_home_page.GoogleHomepage.test_check_page_loaded
+python -m unittest BikroyDotCom.tests.test_homePO.Test_HomePO.test_get_copyright_text_is_not_none
+
 ```
