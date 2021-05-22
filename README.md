@@ -34,7 +34,7 @@ pytest
 
 #### If you want to run all tests from assignment, you should type: 
 ```sh
-pytest 
+pytest BikroyDotCom/tests/tests_from_assignment.py 
 or
 python -m unittest BikroyDotCom/tests/tests_from_assignment.py
 ```
